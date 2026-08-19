@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}waze — Never scroll for a plan again{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="{{ url_for('index') }}" class="brand">
+    <span class="brand-mark">wa</span>
+    <span class="brand-word">Waze</span>
+  </a>
+  <div class="nav-links">
+    <a href="{{ url_for('discover') }}">Discover</a>
+    <a href="{{ url_for('swipe_new') }}">Swipe & Match</a>
+  </div>
+</nav>
+
+<div class="flash-stack">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <p>waze — an InnovEgypt project. Solving "أروح فين؟" one match at a time.</p>
+  <p class="footer-year">© {{ current_year }}</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

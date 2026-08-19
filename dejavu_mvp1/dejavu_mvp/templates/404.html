@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}Not found — Déjà Vu{% endblock %}
+{% block content %}
+<section class="empty-state" style="margin-top:4rem;">
+  <h3>This page took a wrong turn</h3>
+  <p>Let's get you back to somewhere real.</p>
+  <a href="{{ url_for('index') }}" class="btn btn-primary">Back home</a>
+</section>
+{% endblock %}

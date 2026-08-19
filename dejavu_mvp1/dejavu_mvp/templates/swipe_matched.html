@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}It's a match! — Déjà Vu{% endblock %}
+{% block content %}
+
+<section class="match-screen">
+  <div class="match-spark" aria-hidden="true"></div>
+  <p class="eyebrow">Everyone agreed</p>
+  <h1>It's a match!</h1>
+
+  <div class="match-card">
+    {% if place['is_hidden_gem'] %}<span class="place-badge">Hidden gem</span>{% endif %}
+    <span class="place-cat">{{ place['category_icon'] }} {{ place['category_name'] }}</span>
+    <h2>{{ place['name'] }}</h2>
+    <p class="place-area">{{ place['area'] }}</p>
+    <p class="place-desc">{{ place['description'] }}</p>
+    <span class="place-price">{{ place['price_per_person'] }} EGP / person</span>
+  </div>
+
+  <p class="match-members">Matched by: {% for m in members %}{{ m['member_name'] }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+
+  <div class="match-actions">
+    <a href="{{ url_for('place_detail', place_id=place['id']) }}" class="btn btn-primary">View full details</a>
+    <a href="{{ url_for('swipe_new') }}" class="btn btn-secondary">Start a new room</a>
+  </div>
+</section>
+
+{% endblock %}

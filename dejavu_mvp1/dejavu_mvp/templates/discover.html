@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block title %}Discover — Déjà Vu{% endblock %}
+{% block content %}
+
+<section class="discover-head">
+  <h1>Discover</h1>
+  {% if total_estimate %}
+  <p class="estimate-pill">Estimated total for your group: <strong>{{ total_estimate }} EGP</strong></p>
+  {% endif %}
+</section>
+
+<div class="discover-layout">
+  <aside class="filters">
+    <form method="get" action="{{ url_for('discover') }}">
+      <div class="filter-group">
+        <label for="budget_max">Max per person (EGP)</label>
+        <input type="number" id="budget_max" name="budget_max" value="{{ budget_max or '' }}" min="0" step="10">
+      </div>
+
+      <div class="filter-group">
+        <label for="group_size">Group size</label>
+        <input type="number" id="group_size" name="group_size" value="{{ group_size or '' }}" min="1" step="1">
+      </div>
+
+      <div class="filter-group">
+        <label for="category_id">Category</label>
+        <select id="category_id" name="category_id">
+          <option value="">All categories</option>
+          {% for c in nav_categories %}
+          <option value="{{ c['id'] }}" {% if category_id == c['id'] %}selected{% endif %}>{{ c['icon'] }} {{ c['name'] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="vibe_id">Vibe</label>
+        <select id="vibe_id" name="vibe_id">
+          <option value="">Any vibe</option>
+          {% for v in nav_vibes %}
+          <option value="{{ v['id'] }}" {% if vibe_id == v['id'] %}selected{% endif %}>{{ v['icon'] }} {{ v['name'] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="area">Area</label>
+        <input type="text" id="area" name="area" value="{{ area or '' }}" placeholder="e.g. Zamalek">
+      </div>
+
+      <div class="filter-group">
+        <label for="sort">Sort by</label>
+        <select id="sort" name="sort">
+          <option value="recommended" {% if sort == 'recommended' %}selected{% endif %}>Recommended</option>
+          <option value="price_low" {% if sort == 'price_low' %}selected{% endif %}>Price: low to high</option>
+          <option value="price_high" {% if sort == 'price_high' %}selected{% endif %}>Price: high to low</option>
+          <option value="rating" {% if sort == 'rating' %}selected{% endif %}>Highest rated</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Apply filters</button>
+      <a href="{{ url_for('discover') }}" class="clear-link">Clear all</a>
+    </form>
+  </aside>
+
+  <section class="results">
+    {% if places %}
+    <p class="results-count">{{ places|length }} place{{ 's' if places|length != 1 else '' }} found</p>
+    <div class="place-grid">
+      {% for p in places %}
+      <a href="{{ url_for('place_detail', place_id=p['id']) }}" class="place-card">
+        {% if p['is_hidden_gem'] %}<span class="place-badge">Hidden gem</span>{% endif %}
+        <div class="place-card-top">
+          <span class="place-cat">{{ p['category_icon'] }} {{ p['category_name'] }}</span>
+          {% if p['avg_rating'] %}<span class="place-rating">★ {{ p['avg_rating'] }}</span>{% endif %}
+        </div>
+        <h3>{{ p['name'] }}</h3>
+        <p class="place-area">{{ p['area'] }}</p>
+        <p class="place-desc">{{ p['description'] }}</p>
+        <div class="place-card-bottom">
+          <span class="place-price">{{ p['price_per_person'] }} EGP</span>
+          <span class="place-reviews">{{ p['review_count'] }} review{{ 's' if p['review_count'] != 1 else '' }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <h3>No matches for those filters</h3>
+      <p>Try raising the budget or clearing a filter — Cairo has more to offer than this search caught.</p>
+      <a href="{{ url_for('discover') }}" class="btn btn-secondary">Reset filters</a>
+    </div>
+    {% endif %}
+  </section>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Swipe & Match — Déjà Vu{% endblock %}
+{% block content %}
+
+<section class="swipe-intro">
+  <p class="eyebrow">Group decision, solved</p>
+  <h1>Everyone swipes.<br>Nobody argues.</h1>
+  <p class="hero-sub">Start a room, share the code with your friends. Everyone swipes on the same places — when you all like one, it's an instant match.</p>
+</section>
+
+<div class="swipe-panels">
+  <div class="panel">
+    <h2>Start a new room</h2>
+    <form method="post" action="{{ url_for('swipe_new') }}">
+      <div class="filter-group">
+        <label for="host_name">Your name</label>
+        <input type="text" id="host_name" name="host_name" placeholder="e.g. Hassan" required>
+      </div>
+      <div class="filter-group">
+        <label for="budget_max">Max budget per person (EGP)</label>
+        <input type="number" id="budget_max" name="budget_max" placeholder="e.g. 250" min="0" step="10">
+      </div>
+      <div class="filter-group">
+        <label for="category_id">Category (optional)</label>
+        <select id="category_id" name="category_id">
+          <option value="">Any category</option>
+          {% for c in categories %}
+          <option value="{{ c['id'] }}">{{ c['icon'] }} {{ c['name'] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create room</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h2>Join a room</h2>
+    <form method="post" action="{{ url_for('swipe_join') }}">
+      <div class="filter-group">
+        <label for="code">Room code</label>
+        <input type="text" id="code" name="code" placeholder="e.g. X7K2P" maxlength="8" style="text-transform:uppercase" required>
+      </div>
+      <div class="filter-group">
+        <label for="member_name">Your name</label>
+        <input type="text" id="member_name" name="member_name" placeholder="e.g. Nourhan" required>
+      </div>
+      <button type="submit" class="btn btn-secondary btn-block">Join room</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Room {{ room['code'] }} — Déjà Vu{% endblock %}
+{% block content %}
+
+<section class="room-head">
+  <p class="eyebrow">Room code</p>
+  <h1 class="room-code">{{ room['code'] }}</h1>
+  <p class="hero-sub">Share this code with your friends so they can join. Swiping as <strong>{{ member }}</strong>.</p>
+  <div class="member-chips">
+    {% for m in members %}
+    <span class="member-chip">{{ m['member_name'] }}</span>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="swipe-stage" id="swipe-stage" data-room-code="{{ room['code'] }}" data-member="{{ member }}">
+  {% if next_place %}
+  <div class="swipe-card" id="active-card" data-place-id="{{ next_place['id'] }}">
+    {% if next_place['is_hidden_gem'] %}<span class="place-badge">Hidden gem</span>{% endif %}
+    <span class="place-cat">{{ next_place['category_icon'] }} {{ next_place['category_name'] }}</span>
+    <h2>{{ next_place['name'] }}</h2>
+    <p class="place-area">{{ next_place['area'] }}</p>
+    <p class="place-desc">{{ next_place['description'] }}</p>
+    <span class="place-price">{{ next_place['price_per_person'] }} EGP / person</span>
+  </div>
+  <div class="swipe-controls">
+    <button class="swipe-btn swipe-btn--pass" id="btn-pass" aria-label="Pass">✕</button>
+    <button class="swipe-btn swipe-btn--like" id="btn-like" aria-label="Like">♥</button>
+  </div>
+  <p class="swipe-hint-text">Swipe or tap — when everyone in the room likes the same place, it's a match.</p>
+  {% else %}
+  <div class="empty-state">
+    <h3>You've swiped through everything in budget</h3>
+    <p>Waiting on the rest of the group to catch up, or try a wider budget next time.</p>
+    <a href="{{ url_for('swipe_room', code=room['code'], member=member) }}" class="btn btn-secondary">Check again</a>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/swipe.js') }}"></script>
+{% endblock %}

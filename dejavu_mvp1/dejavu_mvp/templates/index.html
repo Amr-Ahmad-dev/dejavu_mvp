@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+{% set areass = ['Zamalek', 'Maadi', 'Heliopolis', 'Nasr City', 'Downtown', 'Garden City', 'Dokki', 'Mohandessin', 'New Cairo', '6th of October'] %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">أروح فين؟ — solved</p>
+    <h1>Stop scrolling.<br>Start swiping.</h1>
+    <p class="hero-sub">Tell us your budget and your mood. We'll match you and your friends to a real place in Cairo — verified prices, verified reviews, zero group-chat arguments.</p>
+
+    <form action="{{ url_for('discover') }}" method="get" class="quick-filter">
+      <div class="qf-field">
+        <label for="budget_max">amount</label>
+        <input type="number" id="budget_max" name="budget_max" placeholder="e.g. 200" min="100" step="50">
+      </div>
+      <div class="qf-field">
+        <label for="group_size">Group size</label>
+        <input type="number" id="group_size" name="group_size" placeholder="e.g. 4" min="1" step="1" max="20">
+      </div>
+      <div class="qf-field">
+        <label for="area">Area</label>
+        <select id="area" name="area">
+          <option value="">Anywhere in Cairo</option><!--hared codet nead chang onle like that becuse data is impty -->
+
+          {% for a in areas %}
+          <option value="{{ a }}">{{ a }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Find places</button>
+    </form>
+
+    <div class="hero-alt-cta">
+      <span>Planning with friends?</span>
+      <a href="{{ url_for('swipe_new') }}" class="link-arrow">Start a Swipe & Match room →</a>
+    </div>
+  </div>
+
+  <div class="hero-stack" aria-hidden="true">
+    <div class="stack-card stack-card--back">
+      <span class="stack-cat">☕ Café</span>
+      <span class="stack-name">Loft 59</span>
+      <span class="stack-price">160 EGP</span>
+    </div>
+    <div class="stack-card stack-card--mid">
+      <span class="stack-cat">🎉 Entertainment</span>
+      <span class="stack-name">Cairo Jazz Club</span>
+      <span class="stack-price">350 EGP</span>
+    </div>
+    <div class="stack-card stack-card--front">
+      <span class="stack-cat">🍽️ Restaurant</span>
+      <span class="stack-name">Zooba</span>
+      <span class="stack-price">100 EGP</span>
+      <div class="stack-swipe-hint">
+        <span class="hint-pass">✕</span>
+        <span class="hint-like">♥</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="value-strip">
+  <div class="value-item">
+    <span class="value-num">3 taps</span>
+    <span class="value-label">from open app to a real recommendation</span>
+  </div>
+  <div class="value-item">
+    <span class="value-num">100%</span>
+    <span class="value-label">verified-visit reviews, no fake photos</span>
+  </div>
+  <div class="value-item">
+    <span class="value-num">Group</span>
+    <span class="value-label">swipe rooms end the "where should we go" debate</span>
+  </div>
+</section>
+
+{% if hidden_gems %}
+<section class="gems">
+  <h2>Hidden gems near you</h2>
+  <p class="section-sub">Small, well-loved spots the algorithms usually skip.</p>
+  <div class="gem-grid">
+    {% for p in hidden_gems %}
+    <a href="{{ url_for('place_detail', place_id=p['id']) }}" class="gem-card">
+      <span class="gem-badge">Hidden gem</span>
+      <h3>{{ p['name'] }}</h3>
+      <p class="gem-meta">{{ p['category_icon'] }} {{ p['category_name'] }} · {{ p['area'] }}</p>
+      <p class="gem-price">{{ p['price_per_person'] }} EGP / person</p>
+      {% if p['avg_rating'] %}
+      <p class="gem-rating">★ {{ p['avg_rating'] }} ({{ p['review_count'] }})</p>
+      {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

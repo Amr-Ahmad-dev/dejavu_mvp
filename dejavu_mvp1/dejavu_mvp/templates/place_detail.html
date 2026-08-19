@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block title %}{{ place['name'] }} — Déjà Vu{% endblock %}
+{% block content %}
+
+<section class="detail-head">
+  <a href="{{ url_for('discover') }}" class="back-link">← Back to results</a>
+  <div class="detail-title-row">
+    <div>
+      {% if place['is_hidden_gem'] %}<span class="place-badge">Hidden gem</span>{% endif %}
+      <h1>{{ place['name'] }}</h1>
+      <p class="detail-meta">{{ place['category_icon'] }} {{ place['category_name'] }} · {{ place['area'] }}</p>
+    </div>
+    <div class="detail-price-box">
+      <span class="detail-price">{{ place['price_per_person'] }} EGP</span>
+      <span class="detail-price-label">avg / person</span>
+    </div>
+  </div>
+  {% if avg_rating %}
+  <p class="detail-rating">★ {{ avg_rating }} <span class="muted">({{ review_count }} verified review{{ 's' if review_count != 1 else '' }})</span></p>
+  {% endif %}
+</section>
+
+<section class="detail-body">
+  <div class="detail-main">
+    <p class="detail-desc">{{ place['description'] }}</p>
+
+    {% if vibes %}
+    <div class="vibe-tags">
+      {% for v in vibes %}
+      <span class="vibe-tag">{{ v['icon'] }} {{ v['name'] }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <h2>Reviews</h2>
+    {% if reviews %}
+    <div class="review-list">
+      {% for r in reviews %}
+      <div class="review-item">
+        <div class="review-item-head">
+          <strong>{{ r['reviewer_name'] }}</strong>
+          {% if r['verified_visit'] %}<span class="verified-tag">✓ Verified visit</span>{% endif %}
+          <span class="review-stars">{{ '★' * r['rating'] }}{{ '☆' * (5 - r['rating']) }}</span>
+        </div>
+        {% if r['comment'] %}<p>{{ r['comment'] }}</p>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="muted">No reviews yet — be the first to share how it went.</p>
+    {% endif %}
+  </div>
+
+  <aside class="review-form-box">
+    <h3>Leave a verified review</h3>
+    <form method="post" action="{{ url_for('add_review', place_id=place['id']) }}">
+      <div class="filter-group">
+        <label for="reviewer_name">Your name</label>
+        <input type="text" id="reviewer_name" name="reviewer_name" placeholder="e.g. Sara M.">
+      </div>
+      <div class="filter-group">
+        <label for="rating">Rating</label>
+        <select id="rating" name="rating" required>
+          <option value="">Select a rating</option>
+          <option value="5">★★★★★ Excellent</option>
+          <option value="4">★★★★☆ Good</option>
+          <option value="3">★★★☆☆ Okay</option>
+          <option value="2">★★☆☆☆ Not great</option>
+          <option value="1">★☆☆☆☆ Poor</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="comment">Comment</label>
+        <textarea id="comment" name="comment" rows="3" placeholder="What was the vibe like? Any surprises on price?"></textarea>
+      </div>
+      <label class="checkbox-row">
+        <input type="checkbox" id="verified_visit" name="verified_visit" checked>
+        <span>I actually visited this place</span>
+      </label>
+      <button type="submit" class="btn btn-primary btn-block">Submit review</button>
+    </form>
+  </aside>
+</section>
+
+{% endblock %}
