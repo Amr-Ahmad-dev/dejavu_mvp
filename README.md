@@ -27,12 +27,15 @@
   <a href="https://www.linkedin.com/in/amrahmadsalah">🔗 LinkedIn</a>
 </p>
 
-✦ The Idea
+---
+
+# ✦ The Idea
 
 Choosing somewhere to go sounds simple.
 
 For a group, it often isn't.
 
+```text
 "Where should we go?"
         ↓
 "How much is it?"
@@ -44,19 +47,23 @@ For a group, it often isn't.
 "Is there somewhere better?"
         ↓
       ...
+```
 
-Déjà Vu was designed around a different idea:
+**Déjà Vu** was designed around a different idea:
 
-Don't make people browse endlessly. Help them reach a decision.
+> **Don't make people browse endlessly. Help them reach a decision.**
 
-The MVP treats outing discovery as a combination of constraints, preferences, and group consensus rather than simply a directory of places.
+The MVP treats outing discovery as a combination of **constraints, preferences, and group consensus** rather than simply a directory of places.
 
-🎯 The Problem
+---
+
+# 🎯 The Problem
 
 Students and young adults can lose a surprising amount of time deciding where to go, especially when several people are involved.
 
 A useful outing decision often has to satisfy several conditions at once:
 
+```text
                  ┌──────────────┐
                  │    BUDGET    │
                  │ What can we  │
@@ -76,43 +83,28 @@ A useful outing decision often has to satisfy several conditions at once:
                  │ Where should   │
                  │ we actually go?│
                  └────────────────┘
+```
 
 Déjà Vu is an MVP attempt to make that decision easier.
 
-🚀 What I Built
+---
+
+# 🚀 What I Built
 
 The product combines several ideas into one decision-oriented flow.
 
-Feature
+| Feature | What it solves |
+|---|---|
+| 💰 **Budget-First Search** | Finds places within a user's spending limit |
+| 👥 **Group Swipe-to-Match** | Finds places liked by everyone in a group |
+| 🎭 **Vibe Filtering** | Searches by experience instead of only category |
+| 💎 **Hidden Gem Discovery** | Gives lesser-known places additional visibility |
+| ⭐ **Verified-Visit Reviews** | Distinguishes review confirmation from ordinary reviews |
+| 🧮 **Group Cost Estimation** | Estimates expected cost for the whole group |
 
-What it solves
+### The core loop
 
-💰 Budget-First Search
-
-Finds places within a user's spending limit
-
-👥 Group Swipe-to-Match
-
-Finds places liked by everyone in a group
-
-🎭 Vibe Filtering
-
-Searches by experience instead of only category
-
-💎 Hidden Gem Discovery
-
-Gives lesser-known places additional visibility
-
-⭐ Verified-Visit Reviews
-
-Distinguishes review confirmation from ordinary reviews
-
-🧮 Group Cost Estimation
-
-Estimates expected cost for the whole group
-
-The core loop
-
+```text
 DEFINE CONSTRAINTS
        │
        ├── Budget
@@ -137,15 +129,19 @@ DEFINE CONSTRAINTS
               │
               ▼
        MAKE A DECISION
+```
 
 The goal is not to maximize browsing.
 
-It is to reduce decision friction.
+It is to reduce **decision friction**.
 
-🧭 Research → Product
+---
 
-Déjà Vu was developed from the DÉJÀ VU × INNOVEGYPT research and ideation process rather than from a random feature list.
+# 🧭 Research → Product
 
+Déjà Vu was developed from the **DÉJÀ VU × INNOVEGYPT** research and ideation process rather than from a random feature list.
+
+```text
 ┌──────────────────────┐
 │    USER RESEARCH     │
 ├──────────────────────┤
@@ -182,53 +178,29 @@ Déjà Vu was developed from the DÉJÀ VU × INNOVEGYPT research and ideation p
 │ Vibe discovery       │
 │ Hidden gems          │
 └──────────────────────┘
+```
 
-Ideation results
+### Ideation results
 
-Concept
-
-Score
-
-MVP status
-
-Group Swipe-to-Match
-
-8/9
-
-✅ Implemented
-
-Reverse Budget-First Search
-
-7/9
-
-✅ Implemented
-
-Vibe & Mood Filtering
-
-7/9
-
-✅ Implemented
-
-Hidden Gem Discovery
-
-—
-
-✅ Implemented
-
-Verified-Visit Reviews
-
-—
-
-✅ MVP implementation
+| Concept | Score | MVP status |
+|---|:---:|---|
+| **Group Swipe-to-Match** | **8/9** | ✅ Implemented |
+| Reverse Budget-First Search | 7/9 | ✅ Implemented |
+| Vibe & Mood Filtering | 7/9 | ✅ Implemented |
+| Hidden Gem Discovery | — | ✅ Implemented |
+| Verified-Visit Reviews | — | ✅ MVP implementation |
 
 The important connection is:
 
-user problem → idea → priority → implementation
+**user problem → idea → priority → implementation**
 
-💰 01 — Budget-First Discovery
+---
+
+# 💰 01 — Budget-First Discovery
 
 Instead of making the user inspect places one by one and calculate affordability manually, the platform begins with a maximum spending amount per person.
 
+```text
 Maximum budget / person
           │
           ▼
@@ -239,25 +211,31 @@ Maximum budget / person
              │
              ▼
       Relevant options
+```
 
 The group estimate is then:
 
+```text
 Estimated outing cost
         =
 Price per person × Group size
+```
 
 This puts the financial constraint at the beginning of the decision rather than after the user has already spent time exploring a place.
 
-🎭 02 — Vibe & Mood Discovery
+---
+
+# 🎭 02 — Vibe & Mood Discovery
 
 Traditional discovery systems often begin with categories such as restaurants, cafés, parks, or entertainment.
 
 Déjà Vu adds another layer:
 
-What kind of experience are you looking for?
+> **What kind of experience are you looking for?**
 
 Examples include:
 
+```text
 ┌──────────┐  ┌─────────────────┐  ┌────────────┐
 │  Chill   │  │ Study-Friendly  │  │  Romantic  │
 └──────────┘  └─────────────────┘  └────────────┘
@@ -265,21 +243,25 @@ Examples include:
 ┌──────────┐  ┌────────────┐
 │  Social  │  │  Outdoor   │
 └──────────┘  └────────────┘
+```
 
-The MVP contains eight vibe-oriented tags.
+The MVP contains **eight vibe-oriented tags**.
 
 The idea is to move discovery closer to the way people naturally describe an outing:
 
-“I want somewhere chill.”
+> “I want somewhere chill.”
 
 rather than requiring them to start with:
 
-“I want a café.”
+> “I want a café.”
 
-🔎 03 — Place Discovery
+---
+
+# 🔎 03 — Place Discovery
 
 The discovery layer combines multiple constraints instead of relying on a single category.
 
+```text
                   ┌───────────┐
                   │  BUDGET   │
                   └─────┬─────┘
@@ -298,15 +280,19 @@ The discovery layer combines multiple constraints instead of relying on a single
       │ Normal        │   │ Hidden Gem    │
       │ discovery     │   │ visibility    │
       └───────────────┘   └───────────────┘
+```
 
 The result is meant to be a more relevant set of options rather than another large directory.
 
-👥 04 — Group Swipe-to-Match
+---
 
-This is the central interaction pattern of the MVP and the highest-scoring idea from the original ideation process (8/9).
+# 👥 04 — Group Swipe-to-Match
+
+This is the central interaction pattern of the MVP and the **highest-scoring idea from the original ideation process (8/9)**.
 
 A group creates a room, shares its code, and each person independently evaluates places.
 
+```text
                    GROUP ROOM
                 ┌───────────────┐
                 │    ABC123     │
@@ -324,9 +310,11 @@ A group creates a room, shares its code, and each person independently evaluates
                         │
                         ▼
                  COMMON MATCHES
+```
 
 The conceptual matching operation is:
 
+```text
 Likes(A)
    ∩
 Likes(B)
@@ -336,23 +324,27 @@ Likes(C)
   ...
    =
 COMMON MATCHES
+```
 
 A place becomes a match when all current members of the room have liked it.
 
 The product question therefore changes from:
 
-“Where should we go?”
+> **“Where should we go?”**
 
 into:
 
-“Which places do we all agree on?”
+> **“Which places do we all agree on?”**
 
-⭐ 05 — Reviews & Visit Confirmation
+---
 
-Reviews contain a verified_visit state.
+# ⭐ 05 — Reviews & Visit Confirmation
 
-For the MVP, this is deliberately a confirmation mechanism, not proof of physical presence.
+Reviews contain a `verified_visit` state.
 
+For the MVP, this is deliberately a **confirmation mechanism**, not proof of physical presence.
+
+```text
 User submits review
         │
         ▼
@@ -362,13 +354,15 @@ User submits review
 └──────────┬───────────┘
            ▼
    verified_visit = true
+```
 
-Important boundary
+### Important boundary
 
-The MVP does not claim to provide strong real-world visit verification.
+The MVP does **not** claim to provide strong real-world visit verification.
 
 A production version could later strengthen this through:
 
+```text
 MVP confirmation
        │
        ▼
@@ -380,15 +374,19 @@ MVP confirmation
 │ Receipt             │
 │ Booking             │
 └─────────────────────┘
+```
 
 That distinction keeps the prototype honest about what it currently proves.
 
-💎 06 — Hidden Gems
+---
 
-Déjà Vu includes a mechanism for identifying places as hidden gems.
+# 💎 06 — Hidden Gems
+
+Déjà Vu includes a mechanism for identifying places as **hidden gems**.
 
 Those places receive additional visibility in discovery.
 
+```text
                      PLACES
                        │
              ┌─────────┴─────────┐
@@ -400,13 +398,17 @@ Those places receive additional visibility in discovery.
              └──────────┬────────┘
                         ▼
                     DISCOVERY
+```
 
 The intent is to reduce the tendency for discovery to repeatedly surface only the most obvious locations.
 
-🗃️ Data Model
+---
 
-The application uses a relational SQLite database.
+# 🗃️ Data Model
 
+The application uses a relational **SQLite** database.
+
+```text
                  ┌────────────────┐
                  │     PLACE      │
                  ├────────────────┤
@@ -443,9 +445,11 @@ The application uses a relational SQLite database.
                            ┌──────▼────────┐
                            │   ROOM_SWIPE  │
                            └───────────────┘
+```
 
-Relationships
+### Relationships
 
+```text
 Place ─────< PlaceVibe >───── Vibe
 
 Room ──────< RoomMember
@@ -453,13 +457,17 @@ Room ──────< RoomMember
 RoomMember ─────< RoomSwipe
 
 Place ─────< Review
+```
 
-The many-to-many relationship between places and vibes is represented explicitly through place_vibe.
+The many-to-many relationship between places and vibes is represented explicitly through `place_vibe`.
 
-🏗️ Application Architecture
+---
+
+# 🏗️ Application Architecture
 
 The MVP follows a straightforward server-rendered web architecture.
 
+```text
 ┌──────────────────────────────────────────────────┐
 │                    BROWSER                       │
 │                                                  │
@@ -479,9 +487,11 @@ The MVP follows a straightforward server-rendered web architecture.
 │                                                  │
 │ Places · Vibes · Reviews · Rooms · Swipes       │
 └──────────────────────────────────────────────────┘
+```
 
-Project structure
+### Project structure
 
+```text
 dejavu/
 │
 ├── app.py
@@ -506,43 +516,25 @@ dejavu/
 │
 ├── requirements.txt
 └── dejavu.db
+```
 
-Main implementation files
+### Main implementation files
 
-File
+| File | Responsibility |
+|---|---|
+| `app.py` | Routes, request handling, application logic, database queries |
+| `schema.sql` | SQLite schema and relationships |
+| `seed.py` | Database creation and demo-data population |
+| `templates/` | Jinja2 server-rendered pages |
+| `static/css/style.css` | Visual system and Cairo Dusk theme |
+| `static/js/swipe.js` | Swipe cards, drag/tap interactions, match polling |
+| `static/js/main.js` | Small client-side interactions such as flash-message dismissal |
 
-Responsibility
+---
 
-app.py
+# 🧰 Technology Stack
 
-Routes, request handling, application logic, database queries
-
-schema.sql
-
-SQLite schema and relationships
-
-seed.py
-
-Database creation and demo-data population
-
-templates/
-
-Jinja2 server-rendered pages
-
-static/css/style.css
-
-Visual system and Cairo Dusk theme
-
-static/js/swipe.js
-
-Swipe cards, drag/tap interactions, match polling
-
-static/js/main.js
-
-Small client-side interactions such as flash-message dismissal
-
-🧰 Technology Stack
-
+```text
                        DÉJÀ VU
                           │
          ┌────────────────┼────────────────┐
@@ -553,53 +545,40 @@ Small client-side interactions such as flash-message dismissal
       Flask              CSS
                          JavaScript
                          Jinja2
+```
 
-Technologies used
+### Technologies used
 
-Python
+- **Python**
+- **Flask**
+- **SQLite**
+- **HTML**
+- **CSS**
+- **JavaScript**
+- **Jinja2**
 
-Flask
+### Concepts demonstrated
 
-SQLite
+- MVC-style application organization
+- Relational database design
+- SQL queries
+- Many-to-many relationships
+- Session-based group rooms
+- Server-side rendering
+- Form handling
+- Filtering and search
+- Recommendation logic
+- Asynchronous match polling
+- Client-side interaction
+- Product-oriented MVP development
 
-HTML
+---
 
-CSS
-
-JavaScript
-
-Jinja2
-
-Concepts demonstrated
-
-MVC-style application organization
-
-Relational database design
-
-SQL queries
-
-Many-to-many relationships
-
-Session-based group rooms
-
-Server-side rendering
-
-Form handling
-
-Filtering and search
-
-Recommendation logic
-
-Asynchronous match polling
-
-Client-side interaction
-
-Product-oriented MVP development
-
-📊 Demo Dataset
+# 📊 Demo Dataset
 
 The seed script creates a demonstration dataset representing:
 
+```text
             25 CAIRO PLACES
                    │
         ┌──────────┼──────────┐
@@ -609,39 +588,54 @@ The seed script creates a demonstration dataset representing:
         └──────────┼──────────┘
                    ▼
               MVP DISCOVERY
+```
 
 The dataset makes the application testable without requiring an external live-place API.
 
-▶️ Run Locally
+---
 
-Requirements
+# ▶️ Run Locally
 
-Python 3
+## Requirements
 
-pip
+- Python 3
+- `pip`
 
-1. Install dependencies
+## 1. Install dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
-2. Initialize the database
+## 2. Initialize the database
 
+```bash
 python seed.py
+```
 
 This creates and populates:
 
+```text
 dejavu.db
+```
 
-3. Start the application
+## 3. Start the application
 
+```bash
 python app.py
+```
 
-4. Open it in your browser
+## 4. Open it in your browser
 
+```text
 http://localhost:5000
+```
 
-🧪 Example User Journey
+---
 
+# 🧪 Example User Journey
+
+```text
 ┌──────────────┐
 │     HOME     │
 └──────┬───────┘
@@ -681,57 +675,47 @@ http://localhost:5000
 └────────────┬─────────────┘
              ▼
         Choose a place
+```
 
 The intended outcome is straightforward:
 
-Less time deciding. More time actually going out.
+> **Less time deciding. More time actually going out.**
 
-📦 MVP Scope
+---
 
-Implemented
+# 📦 MVP Scope
 
-Budget-first search
+### Implemented
 
-Group swipe matching
+- [x] Budget-first search
+- [x] Group swipe matching
+- [x] Room codes
+- [x] Vibe filtering
+- [x] Hidden-gem discovery
+- [x] Reviews
+- [x] Verified-visit state
+- [x] Group cost estimation
+- [x] Cairo demo dataset
+- [x] Responsive interactive UI
 
-Room codes
+### Deliberately deferred
 
-Vibe filtering
-
-Hidden-gem discovery
-
-Reviews
-
-Verified-visit state
-
-Group cost estimation
-
-Cairo demo dataset
-
-Responsive interactive UI
-
-Deliberately deferred
-
-Real user authentication
-
-GPS-based visit verification
-
-Receipt verification
-
-Payments
-
-Booking commissions
-
-Merchant dashboard
-
-Live chatbot assistant
-
-Production-grade live place data
+- [ ] Real user authentication
+- [ ] GPS-based visit verification
+- [ ] Receipt verification
+- [ ] Payments
+- [ ] Booking commissions
+- [ ] Merchant dashboard
+- [ ] Live chatbot assistant
+- [ ] Production-grade live place data
 
 These were intentionally kept outside the MVP so the core product hypothesis could be tested without prematurely building the surrounding commercial infrastructure.
 
-🔭 Future Direction
+---
 
+# 🔭 Future Direction
+
+```text
                          CURRENT MVP
                               │
                               ▼
@@ -763,47 +747,43 @@ These were intentionally kept outside the MVP so the core product hypothesis cou
                              │
                              ▼
                       Merchant platform
+```
 
 Possible next steps:
 
-Real accounts and authentication
+- Real accounts and authentication
+- GPS-based visit verification
+- Receipt / booking verification
+- Live place data
+- Real-time availability
+- Booking integration
+- Merchant dashboard
+- Personalized recommendation ranking
+- Natural-language discovery
+- Behavioral analytics
+- Production deployment
 
-GPS-based visit verification
+---
 
-Receipt / booking verification
-
-Live place data
-
-Real-time availability
-
-Booking integration
-
-Merchant dashboard
-
-Personalized recommendation ranking
-
-Natural-language discovery
-
-Behavioral analytics
-
-Production deployment
-
-🧠 Product Design Philosophy
+# 🧠 Product Design Philosophy
 
 The central product decision behind Déjà Vu is:
 
-Start with the user's constraints, not the database's categories.
+> **Start with the user's constraints, not the database's categories.**
 
 A conventional discovery interface might begin with:
 
+```text
 Restaurants
 Cafés
 Parks
 Entertainment
 Shopping
+```
 
 Déjà Vu asks a different sequence:
 
+```text
 How much can we spend?
         ↓
 What kind of experience do we want?
@@ -813,21 +793,25 @@ Who are we going with?
 What do we all like?
         ↓
 Where should we actually go?
+```
 
 That changes the role of the application.
 
 It is not primarily trying to answer:
 
-“What places exist?”
+> **“What places exist?”**
 
 It is trying to answer:
 
-“Given our constraints and preferences, what should we choose?”
+> **“Given our constraints and preferences, what should we choose?”**
 
-🧩 MVP vs Production
+---
 
-One of the deliberate design choices in this project is separating what is necessary to validate the idea from what is necessary to run a real commercial platform.
+# 🧩 MVP vs Production
 
+One of the deliberate design choices in this project is separating **what is necessary to validate the idea** from **what is necessary to run a real commercial platform**.
+
+```text
                   MVP
                    │
                    │ prove the core interaction
@@ -849,19 +833,23 @@ One of the deliberate design choices in this project is separating what is neces
          │           │           │
          ▼           ▼           ▼
       Payments    Analytics   Booking
+```
 
-Current status
+### Current status
 
-MVP — Functional Prototype
+> **MVP — Functional Prototype**
 
-The application is functional and demonstrates the intended product flow, but it is not presented as a production-ready commercial platform.
+The application is functional and demonstrates the intended product flow, but it is **not presented as a production-ready commercial platform**.
 
 Some systems are intentionally simplified or simulated because the purpose of this stage is to validate the core experience first.
 
-💡 What This Project Demonstrates
+---
 
-Déjà Vu sits at the intersection of software engineering and product thinking.
+# 💡 What This Project Demonstrates
 
+Déjà Vu sits at the intersection of **software engineering and product thinking**.
+
+```text
                     USER PROBLEM
                          │
                          ▼
@@ -889,39 +877,32 @@ Déjà Vu sits at the intersection of software engineering and product thinking.
                └─────────┬─────────┘
                          ▼
                  FUNCTIONAL PROTOTYPE
+```
 
 The project demonstrates experience with:
 
-Translating user research into software requirements
-
-Prioritizing features instead of building everything
-
-Designing an MVP around a specific problem
-
-Building a Flask web application
-
-Designing a relational SQLite database
-
-Implementing filtering and recommendation logic
-
-Implementing many-to-many relationships
-
-Building group decision workflows
-
-Creating interactive JavaScript components
-
-Rendering interfaces with Jinja2
-
-Designing a consistent visual system
-
-Separating MVP requirements from production requirements
+- Translating user research into software requirements
+- Prioritizing features instead of building everything
+- Designing an MVP around a specific problem
+- Building a Flask web application
+- Designing a relational SQLite database
+- Implementing filtering and recommendation logic
+- Implementing many-to-many relationships
+- Building group decision workflows
+- Creating interactive JavaScript components
+- Rendering interfaces with Jinja2
+- Designing a consistent visual system
+- Separating MVP requirements from production requirements
 
 More importantly, the project reinforces a broader engineering lesson:
 
-Writing the code is only one part of building a product. Deciding what deserves to be built first is part of the engineering problem too.
+> **Writing the code is only one part of building a product. Deciding what deserves to be built first is part of the engineering problem too.**
 
-📍 Current Status
+---
 
+# 📍 Current Status
+
+```text
 ┌────────────────────────────────────────────┐
 │                 DÉJÀ VU                    │
 │                                            │
@@ -930,14 +911,17 @@ Writing the code is only one part of building a product. Deciding what deserves 
 │     Built for experimentation,             │
 │     validation, and learning.              │
 └────────────────────────────────────────────┘
+```
 
-Built with: Python · Flask · SQLite · Jinja2 · JavaScript · HTML · CSS
+**Built with:** Python · Flask · SQLite · Jinja2 · JavaScript · HTML · CSS
 
-Research: DÉJÀ VU × INNOVEGYPT
+**Research:** DÉJÀ VU × INNOVEGYPT
 
-Dataset: Cairo demonstration dataset
+**Dataset:** Cairo demonstration dataset
 
-👋 About the Developer
+---
+
+# 👋 About the Developer
 
 <p align="center">
   <strong>Amr Ahmad</strong><br>
@@ -956,6 +940,8 @@ Dataset: Cairo demonstration dataset
   &nbsp;&nbsp;•&nbsp;&nbsp;
   <a href="https://www.linkedin.com/in/amrahmadsalah">🔗 LinkedIn</a>
 </p>
+
+---
 
 <p align="center">
   <strong>Déjà Vu</strong>
